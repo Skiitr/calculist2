@@ -1,0 +1,21 @@
+
+header, main, footer {
+  width: 100%;
+  padding: 1rem;
+}
+
+.application {
+
+  &--title {
+    font-size: 3rem;
+    font-weight: $bold;
+  }
+}
+
+.section {
+
+  &--title {
+    font-size: 1.5rem;
+    font-weight: $bold;
+  }
+}

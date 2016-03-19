@@ -1,0 +1,138 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1;
+  box-sizing: border-box; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+header, main, footer {
+  width: 100%;
+  padding: 1rem; }
+
+.application--title {
+  font-size: 3rem;
+  font-weight: 600; }
+
+.section--title {
+  font-size: 1.5rem;
+  font-weight: 600; }
+
+header {
+  background-color: #ffffff; }
+
+.application--title {
+  font-size: 3rem;
+  font-weight: 600; }
+
+.section--title {
+  font-size: 1.5rem;
+  font-weight: 600; }
+
+.calc {
+  width: 100%;
+  font-family: Dosis;
+  font-weight: 400;
+  margin: auto;
+  min-width: 250px;
+  max-width: 450px; }
+  .calc--keypad {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    width: 100%; }
+  .calc--button {
+    background-color: #333;
+    border: 1px #4d4d4d solid;
+    color: #e8e8e8;
+    font-family: Dosis;
+    font-weight: 400;
+    padding: 1rem;
+    width: 25%;
+    font-size: 1.5rem; }
+    .calc--button:hover {
+      background-color: #4d4d4d;
+      color: white; }
+
+.display {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%; }
+  .display--screen {
+    border-radius: 25px 0 0 0;
+    -webkit-box-flex: 2;
+    -webkit-flex: 2;
+        -ms-flex: 2;
+            flex: 2;
+    background-color: #e8e8e8; }
+  .display--buttons {
+    width: 25%; }
+
+.btn--zero {
+  width: 50%;
+  border-radius: 0 0 0 25px; }
+
+.btn--equals {
+  border-radius: 0 0 25px 0; }
+
+.btn--list-add {
+  display: block;
+  border-radius: 0 25px 0 0;
+  width: 100%; }
+
+.btn--clear {
+  display: block;
+  width: 100%; }
+
+/*# sourceMappingURL=main.css.map */

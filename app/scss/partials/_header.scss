@@ -1,0 +1,19 @@
+header {
+  background-color: $color-background;
+}
+
+.application {
+
+  &--title {
+    font-size: 3rem;
+    font-weight: $bold;
+  }
+}
+
+.section {
+
+  &--title {
+    font-size: 1.5rem;
+    font-weight: $bold;
+  }
+}

@@ -1,0 +1,70 @@
+.calc {
+  width: 100%;
+  font-family: Dosis;
+  font-weight: 400;
+  margin: auto;
+  min-width: 250px;
+  max-width: 450px;
+
+  &--keypad {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  &--button {
+    background-color: #333;
+    border: 1px lighten(#333, 10%) solid;
+    color: #e8e8e8;
+    font-family: Dosis;
+    font-weight: 400;
+    padding: 1rem;
+    width: 25%;
+    font-size: 1.5rem;
+
+    &:hover {
+      background-color: lighten(#333, 10%);
+      color: lighten(#e8e8e8, 10%);
+    }
+  }
+}
+
+.display {
+  display: flex;
+  width: 100%;
+
+  &--screen {
+    border-radius: 25px 0 0 0;
+    flex: 2;
+    background-color: #e8e8e8;
+  }
+
+  &--buttons {
+    width: 25%;
+  }
+}
+
+.btn {
+
+  &--zero {
+    width: 50%;
+    border-radius: 0 0 0 25px;
+  }
+
+  &--equals {
+    border-radius: 0 0 25px 0;
+  }
+
+  &--list-add {
+    display: block;
+    border-radius: 0 25px 0 0;
+    width: 100%;
+  }
+
+  &--clear {
+    display: block;
+    width: 100%;
+  }
+}
