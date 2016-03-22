@@ -43,27 +43,28 @@ table {
   border-spacing: 0; }
 
 header, main, footer {
-  width: 100%;
-  padding: 1rem; }
-
-.application--title {
-  font-size: 3rem;
-  font-weight: 600; }
+  background-color: #1a97de;
+  width: 100%; }
 
 .section--title {
   font-size: 1.5rem;
   font-weight: 600; }
 
 header {
-  background-color: #ffffff; }
+  text-align: center; }
 
 .application--title {
-  font-size: 3rem;
-  font-weight: 600; }
-
-.section--title {
-  font-size: 1.5rem;
-  font-weight: 600; }
+  display: inline-block;
+  background-color: inherit;
+  color: #e8e8e8;
+  font-size: 2.25rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  letter-spacing: 0.1rem;
+  -webkit-transform: skewX(10deg);
+          transform: skewX(10deg); }
+  .application--title span {
+    font-size: 3rem; }
 
 .calc {
   width: 100%;
@@ -91,8 +92,8 @@ header {
             justify-content: space-between;
     width: 100%; }
   .calc--button {
-    background-color: #333;
-    border: 1px #4d4d4d solid;
+    background-color: #555;
+    border: 1px #6f6f6f solid;
     color: #e8e8e8;
     font-family: Dosis;
     font-weight: 400;
@@ -134,5 +135,32 @@ header {
 .btn--clear {
   display: block;
   width: 100%; }
+
+.card {
+  background: #e8e8e8;
+  margin: 1rem auto;
+  width: 75%;
+  border-radius: 10px; }
+  .card--title, .card--equation, .card--solution {
+    font-size: 1.5rem;
+    padding: 0.5rem; }
+  .card--title {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px 10px 0 0;
+    padding-left: 1rem; }
+    .card--title h3 {
+      -webkit-box-flex: 2;
+      -webkit-flex: 2;
+          -ms-flex: 2;
+              flex: 2; }
+    .card--title--up, .card--title--down, .card--title--del {
+      margin-left: 0.75rem; }
+  .card--equation, .card--solution {
+    text-align: right;
+    padding-right: 1rem; }
 
 /*# sourceMappingURL=main.css.map */

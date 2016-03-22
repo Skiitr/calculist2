@@ -12,28 +12,28 @@
 
     <!-- Application Header -->
     <header>
-      <h1 class="application--title">Calculist 2</h1>
+      <h1 class="application--title">CALCU<span>L</span>IST<span>2</span></h1>
     </header>
 
     <!-- Application Main Area -->
-    <main>
+    <main ng-app="calculist2">
       <!-- Calculator Area -->
-      <section class="calc">
-        <h2 class="section--title">Calculator</h2>
+      <section ng-controller="calculatorController as calculator" class="calc">
+        <!-- <h2 class="section--title">Calculator</h2> -->
         <!-- Screen Area -->
         <div class="display">
           <div class="display--screen"></div>
           <div class="display--buttons">
-            <button type="button" class="calc--button btn--list-add" name="btnAddToList">+</button>
-            <button type="button" class="calc--button btn--clear" name="btnClearScreen"><-</button>
+            <button type="button" class="calc--button btn--list-add" name="btnAddToList">LIST</button>
+            <button type="button" class="calc--button btn--clear" name="btnClearScreen">CE</button>
         </div>
         </div>
         <!-- Keypad -->
         <div class="calc--keypad">
           <!-- Keypad Area Top Row-->
           <button type="button" class="calc--button" name="btnPlusMinus">+/-</button>
-          <button type="button" class="calc--button" name="btnExponent">x^y</button>
-          <button type="button" class="calc--button" name="btnRoot">^/</button>
+          <button type="button" class="calc--button" name="btnExponent">_</button>
+          <button type="button" class="calc--button" name="btnRoot">_</button>
           <button type="button" class="calc--button" name="btnDivide">/</button>
           <!-- Keypad Area 2nd Row-->
           <button type="button" class="calc--button" name="btnSeven">7</button>
@@ -62,14 +62,20 @@
         <h2 class="section--title list">List</h2>
         <ul>
           <li class="card">
-            <h3 class="card--Title">Card Title Goes Here</h3>
-            <div class="card--Equation">47 x 89</div>
-            <div class="card--Solution">= 4183</div>
+            <div class="card--title">
+              <h3>Card Title Goes Here</h3>
+              <div class="card--title--up">/\</div>
+              <div class="card--title--down">\/</div>
+              <div class="card--title--del">X</div>
+            </div>
+
+            <div class="card--equation">47 x 89 =</div>
+            <div class="card--solution">4183</div>
           </li>
           <li class="card">
-            <h3 class="card--Title">Card Title Goes Here</h3>
-            <div class="card--Equation">33 / 11</div>
-            <div class="card--Solution">= 3</div>
+            <h3 class="card--title">Card Title Goes Here</h3>
+            <div class="card--equation">33 / 11 =</div>
+            <div class="card--solution">3</div>
           </li>
         </ul>
       </section>
