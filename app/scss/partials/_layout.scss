@@ -1,13 +1,52 @@
-
-header, main, footer {
+// General Layout
+body, header, main, footer {
   background-color: #1a97de;
-  width: 100%;
+  font-family: Lato;
 }
 
 .section {
 
   &--title {
+    position: absolute;
+    left: 6%;
+    width: 1em;
+    font-family: Lato;
+    color: #e8e8e8;
     font-size: 1.5rem;
     font-weight: $bold;
+
+    @media (max-width: 600px) {
+      display: none;
+    }
   }
+}
+
+// Header Section
+header {
+  text-align: center;
+}
+
+.application {
+
+  &--title {
+    display: inline-block;
+    background-color: inherit;
+    color: #e8e8e8;
+    font-size: 2.25rem;
+    font-weight: $bold;
+    padding: 1.5rem 1rem;
+    letter-spacing: 0.15rem;
+    transform: skewX(10deg);
+
+    span {
+      font-size: 3rem;
+    }
+  }
+}
+
+// Footer Section
+footer {
+  color: #e8e8e8;
+  text-align: center;
+  margin-bottom: 2rem;
 }

@@ -1,10 +1,16 @@
 .calc {
-  width: 100%;
+  width: 95%;
   font-family: Dosis;
   font-weight: 400;
   margin: auto;
-  min-width: 250px;
-  max-width: 450px;
+  @media (min-width: 400px) {
+    width: 85%;
+  }
+  @media (min-width: 600px) {
+    width: 75%;
+  }
+
+
 
   &--keypad {
     display: flex;

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Calculist 2</title>
 
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Dosis:400' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="./main.css" media="screen" title="no title" charset="utf-8">
   </head>
@@ -19,7 +20,7 @@
     <main ng-app="calculist2">
       <!-- Calculator Area -->
       <section ng-controller="calculatorController as calculator" class="calc">
-        <!-- <h2 class="section--title">Calculator</h2> -->
+        <h2 class="section--title">C A L C U</h2>
         <!-- Screen Area -->
         <div class="display">
           <div class="display--screen"></div>
@@ -58,8 +59,8 @@
       </section>
 
       <!-- List Area -->
-      <section>
-        <h2 class="section--title list">List</h2>
+      <section class="list">
+        <h2 class="section--title">L I S T</h2>
         <ul>
           <li class="card">
             <div class="card--title">
@@ -68,14 +69,28 @@
               <div class="card--title--down">\/</div>
               <div class="card--title--del">X</div>
             </div>
-
             <div class="card--equation">47 x 89 =</div>
             <div class="card--solution">4183</div>
           </li>
           <li class="card">
-            <h3 class="card--title">Card Title Goes Here</h3>
+            <div class="card--title">
+              <h3>Card Title Goes Here</h3>
+              <div class="card--title--up">/\</div>
+              <div class="card--title--down">\/</div>
+              <div class="card--title--del">X</div>
+            </div>
             <div class="card--equation">33 / 11 =</div>
             <div class="card--solution">3</div>
+          </li>
+          <li class="card">
+            <div class="card--title">
+              <h3>Card Title Goes Here</h3>
+              <div class="card--title--up">/\</div>
+              <div class="card--title--down">\/</div>
+              <div class="card--title--del">X</div>
+            </div>
+            <div class="card--equation">34562 / 11 =</div>
+            <div class="card--solution">3142</div>
           </li>
         </ul>
       </section>
