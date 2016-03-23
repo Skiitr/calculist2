@@ -1,37 +1,43 @@
 .card {
   background: #e8e8e8;
   margin: 2rem auto;
-  width: 75%;
+  width: 95%;
   border-radius: 10px;
+  @media (min-width: 400px) {
+    width: 85%;
+  }
+  @media (min-width: 600px) {
+    width: 75%;
+  }
 
-  &--title,
   &--equation,
   &--solution {
     font-size: 1.5rem;
-    padding: 0.5rem;
+    padding: 1.25rem;
+    text-align: right;
+  }
 
+  &--solution {
+    padding-top: 0;
   }
 
   &--title {
     display: flex;
+    font-size: 1.5rem;
     background: rgba(0,0,0,0.2);
     border-radius: 10px 10px 0 0;
-    padding-left: 1rem;
+    font-weight: $bold;
+    padding: 0 0.25rem;
 
     h3 {
       flex: 2;
+      padding: 0.75rem;
     }
 
-    &--up,
-    &--down,
-    &--del {
-      margin-left: 0.75rem;
+    a {
+      text-decoration: none;
+      color: inherit;
+      padding: 0.75rem;
     }
-  }
-
-  &--equation,
-  &--solution {
-    text-align: right;
-    padding-right: 1rem;
   }
 }

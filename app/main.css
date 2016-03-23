@@ -52,6 +52,7 @@ body, header, main, footer {
   width: 1em;
   font-family: Lato;
   color: #e8e8e8;
+  line-height: 1.33;
   font-size: 1.5rem;
   font-weight: 600; }
   @media (max-width: 600px) {
@@ -77,7 +78,10 @@ header {
 footer {
   color: #e8e8e8;
   text-align: center;
-  margin-bottom: 2rem; }
+  margin-bottom: 2rem;
+  height: 2rem; }
+  footer small {
+    margin-right: 0.25rem; }
 
 .calc {
   width: 95%;
@@ -156,28 +160,39 @@ footer {
 .card {
   background: #e8e8e8;
   margin: 2rem auto;
-  width: 75%;
+  width: 95%;
   border-radius: 10px; }
-  .card--title, .card--equation, .card--solution {
+  @media (min-width: 400px) {
+    .card {
+      width: 85%; } }
+  @media (min-width: 600px) {
+    .card {
+      width: 75%; } }
+  .card--equation, .card--solution {
     font-size: 1.5rem;
-    padding: 0.5rem; }
+    padding: 1.25rem;
+    text-align: right; }
+  .card--solution {
+    padding-top: 0; }
   .card--title {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
+    font-size: 1.5rem;
     background: rgba(0, 0, 0, 0.2);
     border-radius: 10px 10px 0 0;
-    padding-left: 1rem; }
+    font-weight: 600;
+    padding: 0 0.25rem; }
     .card--title h3 {
       -webkit-box-flex: 2;
       -webkit-flex: 2;
           -ms-flex: 2;
-              flex: 2; }
-    .card--title--up, .card--title--down, .card--title--del {
-      margin-left: 0.75rem; }
-  .card--equation, .card--solution {
-    text-align: right;
-    padding-right: 1rem; }
+              flex: 2;
+      padding: 0.75rem; }
+    .card--title a {
+      text-decoration: none;
+      color: inherit;
+      padding: 0.75rem; }
 
 /*# sourceMappingURL=main.css.map */
