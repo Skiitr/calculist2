@@ -6,7 +6,7 @@
     <title>Calculist 2</title>
 
     <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Dosis:700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Dosis:500' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./main.css" media="screen" title="no title" charset="utf-8">
   </head>
@@ -24,11 +24,14 @@
         <h2 class="section--title">C A L C U</h2>
         <!-- Screen Area -->
         <div class="display">
-          <div class="display--screen"></div>
+          <div class="display--screen">
+            <p class="display--top">&nbsp;</p>
+            <p class="display--bottom">313 + 323</p>
+          </div>
           <div class="display--buttons">
             <button type="button" class="calc--button btn--list-add" name="btnAddToList"><i class="fa fa-chevron-down"></i></i></button>
             <button type="button" class="calc--button btn--clear" name="btnClearScreen"><i class="fa fa-chevron-left"></i></button>
-        </div>
+          </div>
         </div>
         <!-- Keypad -->
         <div class="calc--keypad">
@@ -110,10 +113,12 @@
     <!-- AngularFire -->
     <script src="https://cdn.firebase.com/libs/angularfire/1.1.4/angularfire.min.js"></script>
     <!-- Calculist2 -->
-    <script src="./calculist2.module.js"></script>
-    <script src="./data/database.controller.js"></script>
-    <script src="./calculator/calculator.controller.js"></script>
-    <script src="./calculator/calculator.directive.js"></script>
-    <script src="./list/list.controller.js"></script>
+    <script src="calculist2.module.js"></script>
+    <script src="data/database.controller.js"></script>
+    <script src="calculator/calculator.controller.js"></script>
+    <script src="calculator/calculator.directive.js"></script>
+    <script src="list/list.controller.js"></script>
+    <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="app.js"></script>
   </body>
 </html>
