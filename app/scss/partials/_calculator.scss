@@ -29,6 +29,7 @@
     padding: 0.75rem;
     width: 25%;
     font-size: 1.75rem;
+    outline: none;
 
     &:hover {
       background-color: lighten(#333, 10%);
@@ -78,12 +79,12 @@
 
   &--list-add {
     display: block;
-    border-radius: 0 25px 0 0;
     width: 100%;
   }
 
   &--clear {
     display: block;
+    border-radius: 0 25px 0 0;
     width: 100%;
   }
 }

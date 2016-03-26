@@ -25,40 +25,40 @@
         <!-- Screen Area -->
         <div class="display">
           <div class="display--screen">
-            <p class="display--top">&nbsp;</p>
-            <p class="display--bottom">313 + 323</p>
+            <p class="display--top">{{displayTop}}</p>
+            <p class="display--bottom">{{displayBot}}</p>
           </div>
           <div class="display--buttons">
-            <button type="button" class="calc--button btn--list-add" name="btnAddToList"><i class="fa fa-chevron-down"></i></i></button>
-            <button type="button" class="calc--button btn--clear" name="btnClearScreen"><i class="fa fa-chevron-left"></i></button>
+            <button ng-click="displayBot = ''; displayTop = ''" type="button" class="calc--button btn--clear"><i class="fa fa-chevron-left"></i></button>
+            <button type="button" class="calc--button btn--list-add"><i class="fa fa-chevron-down"></i></i></button>
           </div>
         </div>
         <!-- Keypad -->
         <div class="calc--keypad">
           <!-- Keypad Area Top Row-->
-          <button type="button" class="calc--button" name="btnPlusMinus">+/-</button>
-          <button type="button" class="calc--button" name="btnExponent">_</button>
-          <button type="button" class="calc--button" name="btnRoot">_</button>
-          <button type="button" class="calc--button" name="btnDivide">/</button>
+          <button type="button" class="calc--button">+/-</button>
+          <button type="button" class="calc--button">_</button>
+          <button ng-click="inputBtnClick(' ^ ')" type="button" class="calc--button">^</button>
+          <button ng-click="inputBtnClick(' / ')" type="button" class="calc--button">/</button>
           <!-- Keypad Area 2nd Row-->
-          <button type="button" class="calc--button" name="btnSeven">7</button>
-          <button type="button" class="calc--button" name="btnEight">8</button>
-          <button type="button" class="calc--button" name="btnNine">9</button>
-          <button type="button" class="calc--button" name="btnMultiply">x</button>
+          <button ng-click="inputBtnClick('7')" type="button" class="calc--button">7</button>
+          <button ng-click="inputBtnClick('8')" type="button" class="calc--button">8</button>
+          <button ng-click="inputBtnClick('9')" type="button" class="calc--button">9</button>
+          <button ng-click="inputBtnClick(' * ')" type="button" class="calc--button">x</button>
           <!-- Keypad Area 3rd Row-->
-          <button type="button" class="calc--button" name="btnFour">4</button>
-          <button type="button" class="calc--button" name="btnFive">5</button>
-          <button type="button" class="calc--button" name="btnSix">6</button>
-          <button type="button" class="calc--button" name="btnSubtract">-</button>
+          <button ng-click="inputBtnClick('3')" type="button" class="calc--button">4</button>
+          <button ng-click="inputBtnClick('5')" type="button" class="calc--button">5</button>
+          <button ng-click="inputBtnClick('6')" type="button" class="calc--button">6</button>
+          <button ng-click="inputBtnClick(' - ')" type="button" class="calc--button">-</button>
           <!-- Keypad Area 4th Row-->
-          <button type="button" class="calc--button" name="btnOne">1</button>
-          <button type="button" class="calc--button" name="btnTwo">2</button>
-          <button type="button" class="calc--button" name="btnThree">3</button>
-          <button type="button" class="calc--button" name="btnAdd">+</button>
+          <button ng-click="inputBtnClick('1')" type="button" class="calc--button">1</button>
+          <button ng-click="inputBtnClick('2')" type="button" class="calc--button">2</button>
+          <button ng-click="inputBtnClick('3')" type="button" class="calc--button">3</button>
+          <button ng-click="inputBtnClick(' + ')" type="button" class="calc--button">+</button>
           <!-- Keypad Area Bottom Row-->
-          <button type="button" class="calc--button btn--zero" name="btnZero">0</button>
-          <button type="button" class="calc--button" name="btnDecimal">.</button>
-          <button type="button" class="calc--button btn--equals" name="btnEquals">=</button>
+          <button ng-click="inputBtnClick('0')" type="button" class="calc--button btn--zero">0</button>
+          <button ng-click="inputBtnClick('.')" type="button" class="calc--button">.</button>
+          <button ng-click="equate()" type="button" class="calc--button btn--equals">=</button>
         </div>
       </section>
 
@@ -108,17 +108,12 @@
 
     <!-- AngularJS -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
-    <!-- Firebase -->
-    <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
-    <!-- AngularFire -->
-    <script src="https://cdn.firebase.com/libs/angularfire/1.1.4/angularfire.min.js"></script>
+    <!-- jQuery -->
+    <!-- <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script> -->
     <!-- Calculist2 -->
     <script src="calculist2.module.js"></script>
-    <script src="data/database.controller.js"></script>
     <script src="calculator/calculator.controller.js"></script>
     <script src="calculator/calculator.directive.js"></script>
-    <script src="list/list.controller.js"></script>
-    <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-    <script src="app.js"></script>
+    <!-- <script src="app.js"></script> -->
   </body>
 </html>

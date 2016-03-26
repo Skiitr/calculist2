@@ -2,37 +2,34 @@
 
 /* global $ */
 
-function addNumbers (a, b) {
-  return (a + b)
-}
+// Assign functions for all the calculator fucntions
+var calc = {}
+calc.addNumbers = function (a, b) { return (a + b) }
+calc.subtractNumbers = function (a, b) { return (a - b) }
+calc.multiplyNumbers = function (a, b) { return (a * b) }
+calc.divideNumbers = function (a, b) { return (a / b) }
+calc.powNumbers = function (a, b) { return Math.pow(a, b) }
+calc.sqrtNumber = function (a) { return Math.sqrt(a) }
 
-function subtractNumbers (a, b) {
-  return (a - b)
-}
-
-function multiplyNumbers (a, b) {
-  return (a * b)
-}
-
-function divideNumbers (a, b) {
-  return (a / b)
-}
-
+// Route the equation to the proper method
 function parseEquation (a, b, func) {
   switch (func) {
-    case '+': return addNumbers(a, b)
-    case '-': return subtractNumbers(a, b)
-    case '*': return multiplyNumbers(a, b)
-    case '/': return divideNumbers(a, b)
-    default: return a
+    case '+': return calc.addNumbers(a, b)
+    case '-': return calc.subtractNumbers(a, b)
+    case '*': return calc.multiplyNumbers(a, b)
+    case '/': return calc.divideNumbers(a, b)
+    case '^': return calc.powNumbers(a, b)
+    case '#': return calc.sqrtNumber(a)
+    default: return '??'
   }
 }
 
+// Decode the string into values and a function
 function scrapeString (str) {
   var eqObj = {}
-  eqObj.value1 = 313
-  eqObj.value2 = 323
-  eqObj.function = '+'
+  eqObj.valueA = 313
+  eqObj.valueB = 32
+  eqObj.function = '^'
   return eqObj
 }
 
@@ -42,5 +39,5 @@ $('.btn--equals').on('click', function () {
   var displayBot = $('.display--bottom')
   displayTop.html(displayBot.html() + ' =')
   var equation = scrapeString(displayBot.html())
-  displayBot.html(parseEquation(equation.value1, equation.value2, equation.function))
+  displayBot.html(parseEquation(equation.valueA, equation.valueB, equation.function))
 })

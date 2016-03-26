@@ -1,2 +1,2 @@
 'use strict'
-angular.module('calculist2', ['firebase'])
+angular.module('calculist2', [])
