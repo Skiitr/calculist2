@@ -5,7 +5,9 @@ angular
   .module('calculist2')
   .controller('calculatorController', calculator)
 
-function calculator ($scope) {
+function calculator ($scope, dataService) {
+  $scope.dataService = dataService
+
   // create containers for top and bottom line elements
   $scope.displayBot = ''
   $scope.displayTop = ''

@@ -66,12 +66,12 @@
       <section ng-controller="listController as list" class="list">
         <h2 class="section--title">L I S T</h2>
         <ul>
-          <li ng-repeat="card in cards" class="card">
+          <li ng-repeat="card in dataService.cards" class="card">
             <div class="card--title-area">
               <h3 class="card--title">{{ card.title }}</h3>
-              <a class="card--up" href=""><i class="fa fa-chevron-up"></i></a>
-              <a class="card--down" href=""><i class="fa fa-chevron-down"></i></a>
-              <a class="card--del" href=""><i class="fa fa-trash"></i></a>
+              <a class="card--up" ng-click="cardUp()" href=""><i class="fa fa-chevron-up"></i></a>
+              <a class="card--down" ng-click="cardDown()" href=""><i class="fa fa-chevron-down"></i></a>
+              <a class="card--del" ng-click="cardDel()" href=""><i class="fa fa-trash"></i></a>
             </div>
             <div class="card--equation">{{ card.equation }}</div>
             <div class="card--solution">{{ card.solution }}</div>
@@ -82,7 +82,7 @@
 
     <!-- Application Footer -->
     <footer>
-      <small>&copy; 2106 Dan Gallagher</small>
+      <small>&copy; 2016 Dan Gallagher</small>
       <i class="fa fa-github fa-2x"></i>
     </footer>
 
@@ -93,5 +93,6 @@
     <script src="calculator/calculator.controller.js"></script>
     <script src="calculator/calculator.directive.js"></script>
     <script src="list/list.controller.js"></script>
+    <script src="data/database.service.js"></script>
   </body>
 </html>
