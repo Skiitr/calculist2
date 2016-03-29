@@ -1,3 +1,41 @@
-<section>
-  <button type="button" ng-class=btn--{{button.name}}>{{button.content}}</button>
+<section ng-controller="calculatorController as calculator" class="calc">
+  <h2 class="section--title">C A L C U</h2>
+  <!-- Screen Area -->
+  <div class="display">
+    <div class="display--screen">
+      <p class="display--top">{{displayTop}}</p>
+      <p class="display--bottom">{{displayBot}}</p>
+    </div>
+    <div class="display--buttons">
+      <button ng-click="displayBot = ''; displayTop = ''" type="button" class="calc--button btn--clear"><i class="fa fa-chevron-left"></i></button>
+      <button type="button" class="calc--button btn--list-add"><i class="fa fa-chevron-down"></i></i></button>
+    </div>
+  </div>
+  <!-- Keypad -->
+  <div class="calc--keypad">
+    <!-- Keypad Area Top Row-->
+    <button type="button" class="calc--button">+/-</button>
+    <button type="button" class="calc--button">_</button>
+    <button ng-click="inputBtnClick(' ^ ')" type="button" class="calc--button">^</button>
+    <button ng-click="inputBtnClick(' / ')" type="button" class="calc--button">/</button>
+    <!-- Keypad Area 2nd Row-->
+    <button ng-click="inputBtnClick('7')" type="button" class="calc--button">7</button>
+    <button ng-click="inputBtnClick('8')" type="button" class="calc--button">8</button>
+    <button ng-click="inputBtnClick('9')" type="button" class="calc--button">9</button>
+    <button ng-click="inputBtnClick(' * ')" type="button" class="calc--button">x</button>
+    <!-- Keypad Area 3rd Row-->
+    <button ng-click="inputBtnClick('3')" type="button" class="calc--button">4</button>
+    <button ng-click="inputBtnClick('5')" type="button" class="calc--button">5</button>
+    <button ng-click="inputBtnClick('6')" type="button" class="calc--button">6</button>
+    <button ng-click="inputBtnClick(' - ')" type="button" class="calc--button">-</button>
+    <!-- Keypad Area 4th Row-->
+    <button ng-click="inputBtnClick('1')" type="button" class="calc--button">1</button>
+    <button ng-click="inputBtnClick('2')" type="button" class="calc--button">2</button>
+    <button ng-click="inputBtnClick('3')" type="button" class="calc--button">3</button>
+    <button ng-click="inputBtnClick(' + ')" type="button" class="calc--button">+</button>
+    <!-- Keypad Area Bottom Row-->
+    <button ng-click="inputBtnClick('0')" type="button" class="calc--button btn--zero">0</button>
+    <button ng-click="inputBtnClick('.')" type="button" class="calc--button">.</button>
+    <button ng-click="equate()" type="button" class="calc--button btn--equals">=</button>
+  </div>
 </section>

@@ -1,14 +1,13 @@
 'use strict'
+/* globals angular */
+
 angular
   .module('calculist2')
-  .directive('calculator', calculate)
+  .directive('myCalculator', calcObject)
 
-function calculate () {
-  var directive = {
-    templateUrl: '/calculator/calculator.directive.html',
+function calcObject ($scope) {
+  return {
     restrict: 'E',
-    replace: true,
-    controller: '/calculator/calculator.controller.js'
+    templateUrl: 'calculator/calculator.directive.html'
   }
-  return directive
 }

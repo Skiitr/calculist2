@@ -1,0 +1,18 @@
+{
+  "list": {
+    "cards": [
+      {
+        "id": "00",
+        "title": "Card title...",
+        "equation": "34 + 10 =",
+        "solution": "44"
+      },
+      {
+        "id": "01",
+        "title": "Card title...",
+        "equation": "55 / 11 =",
+        "solution": "5"
+      }
+    ]
+  }
+}

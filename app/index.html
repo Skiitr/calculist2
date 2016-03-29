@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./main.css" media="screen" title="no title" charset="utf-8">
   </head>
-  <body>
+  <body ng-controller="calculatorController as calculator" ng-keypress="keyPress($event.keyCode)">
 
     <!-- Application Header -->
     <header>
@@ -20,7 +20,7 @@
     <!-- Application Main Area -->
     <main ng-app="calculist2">
       <!-- Calculator Area -->
-      <section ng-controller="calculatorController as calculator" class="calc">
+      <section class="calc">
         <h2 class="section--title">C A L C U</h2>
         <!-- Screen Area -->
         <div class="display">
@@ -44,7 +44,7 @@
           <button ng-click="inputBtnClick('7')" type="button" class="calc--button">7</button>
           <button ng-click="inputBtnClick('8')" type="button" class="calc--button">8</button>
           <button ng-click="inputBtnClick('9')" type="button" class="calc--button">9</button>
-          <button ng-click="inputBtnClick(' * ')" type="button" class="calc--button">x</button>
+          <button ng-click="inputBtnClick(' * ')" type="button" class="calc--button">*</button>
           <!-- Keypad Area 3rd Row-->
           <button ng-click="inputBtnClick('3')" type="button" class="calc--button">4</button>
           <button ng-click="inputBtnClick('5')" type="button" class="calc--button">5</button>
@@ -58,43 +58,23 @@
           <!-- Keypad Area Bottom Row-->
           <button ng-click="inputBtnClick('0')" type="button" class="calc--button btn--zero">0</button>
           <button ng-click="inputBtnClick('.')" type="button" class="calc--button">.</button>
-          <button ng-click="equate()" type="button" class="calc--button btn--equals">=</button>
+          <button ng-click="equate()" type="submit" class="calc--button btn--equals">=</button>
         </div>
       </section>
 
       <!-- List Area -->
-      <section class="list">
+      <section ng-controller="listController as list" class="list">
         <h2 class="section--title">L I S T</h2>
         <ul>
-          <li class="card">
-            <div class="card--title">
-              <h3>Card Title...</h3>
-              <a href="#"><i class="fa fa-chevron-up"></i></a>
-              <a href="#"><i class="fa fa-chevron-down"></i></a>
-              <a href="#"><i class="fa fa-trash"></i></a>
+          <li ng-repeat="card in cards" class="card">
+            <div class="card--title-area">
+              <h3 class="card--title">{{ card.title }}</h3>
+              <a class="card--up" href=""><i class="fa fa-chevron-up"></i></a>
+              <a class="card--down" href=""><i class="fa fa-chevron-down"></i></a>
+              <a class="card--del" href=""><i class="fa fa-trash"></i></a>
             </div>
-            <div class="card--equation">47 x 89 =</div>
-            <div class="card--solution">4183</div>
-          </li>
-          <li class="card">
-            <div class="card--title">
-              <h3>Card Title...</h3>
-              <a href="#"><i class="fa fa-chevron-up"></i></a>
-              <a href="#"><i class="fa fa-chevron-down"></i></a>
-              <a href="#"><i class="fa fa-trash"></i></a>
-            </div>
-            <div class="card--equation">33 / 11 =</div>
-            <div class="card--solution">3</div>
-          </li>
-          <li class="card">
-            <div class="card--title">
-              <h3>Card Title...</h3>
-              <a href="#"><i class="fa fa-chevron-up"></i></a>
-              <a href="#"><i class="fa fa-chevron-down"></i></a>
-              <a href="#"><i class="fa fa-trash"></i></a>
-            </div>
-            <div class="card--equation">34562 / 11 =</div>
-            <div class="card--solution">3142</div>
+            <div class="card--equation">{{ card.equation }}</div>
+            <div class="card--solution">{{ card.solution }}</div>
           </li>
         </ul>
       </section>
@@ -108,12 +88,10 @@
 
     <!-- AngularJS -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
-    <!-- jQuery -->
-    <!-- <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script> -->
     <!-- Calculist2 -->
     <script src="calculist2.module.js"></script>
     <script src="calculator/calculator.controller.js"></script>
     <script src="calculator/calculator.directive.js"></script>
-    <!-- <script src="app.js"></script> -->
+    <script src="list/list.controller.js"></script>
   </body>
 </html>

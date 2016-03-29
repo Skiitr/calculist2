@@ -1,6 +1,6 @@
 .calc {
   width: 95%;
-  font-family: Dosis;
+  font-family: Lato;
   font-weight: 400;
   margin: auto;
   @media (min-width: 400px) {
@@ -24,8 +24,9 @@
     background-color: #555;
     border: 1px lighten(#555, 10%) solid;
     color: #e8e8e8;
-    font-family: Dosis;
+    font-family: Lato;
     font-weight: 400;
+    letter-spacing: 5px;
     padding: 0.75rem;
     width: 25%;
     font-size: 1.75rem;

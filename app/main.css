@@ -85,7 +85,7 @@ footer {
 
 .calc {
   width: 95%;
-  font-family: Dosis;
+  font-family: Lato;
   font-weight: 400;
   margin: auto; }
   @media (min-width: 400px) {
@@ -116,8 +116,9 @@ footer {
     background-color: #555;
     border: 1px #6f6f6f solid;
     color: #e8e8e8;
-    font-family: Dosis;
+    font-family: Lato;
     font-weight: 400;
+    letter-spacing: 5px;
     padding: 0.75rem;
     width: 25%;
     font-size: 1.75rem;
@@ -194,7 +195,7 @@ footer {
     text-align: right; }
   .card--solution {
     padding-top: 0; }
-  .card--title {
+  .card--title-area {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -204,15 +205,15 @@ footer {
     border-radius: 10px 10px 0 0;
     font-weight: 600;
     padding: 0 0.25rem; }
-    .card--title h3 {
-      -webkit-box-flex: 2;
-      -webkit-flex: 2;
-          -ms-flex: 2;
-              flex: 2;
-      padding: 0.75rem; }
-    .card--title a {
-      text-decoration: none;
-      color: inherit;
-      padding: 0.75rem; }
+  .card--title {
+    -webkit-box-flex: 2;
+    -webkit-flex: 2;
+        -ms-flex: 2;
+            flex: 2;
+    padding: 0.75rem; }
+  .card--up, .card--down, .card--del {
+    text-decoration: none;
+    color: inherit;
+    padding: 0.75rem; }
 
 /*# sourceMappingURL=main.css.map */

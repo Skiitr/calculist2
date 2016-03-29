@@ -50,7 +50,7 @@ gulp.task('runBrowserSync', ['compileSass'], function () {
 // Serve the page up with BrowserSync and watch the Sass and HTML for changes
 gulp.task('serve', ['runBrowserSync'], function () {
   gulp.watch('app/scss/**/*', ['compileSass'])
-  // gulp.watch('src/js/**/*', ['minifyScripts'])
+  gulp.watch('app/**/*.js').on('change', browserSync.reload)
   gulp.watch('app/index.html').on('change', browserSync.reload)
 })
 

@@ -22,6 +22,25 @@ function calculator ($scope) {
     $scope.displayBot += (btn)
   }
 
+  $scope.keyPress = function (keycode) {
+    console.log(keycode)
+    var validKeyCodes = {
+      '48': 0, '49': 1, '50': 2, '51': 3, '52': 4, // 0-4
+      '53': 5, '54': 6, '55': 7, '56': 8, '57': 9, // 5-9
+      '42': ' * ', '43': ' + ', '45': ' - ', '47': ' / ', // *,+,-,/
+      '13': 'Enter' // Enter
+    }
+    if (validKeyCodes[keycode]) {
+      if (validKeyCodes[keycode] === 'Enter') {
+        $scope.equate()
+      } else {
+        $scope.inputBtnClick(validKeyCodes[keycode])
+      }
+    } else {
+      console.log('Key not valid')
+    }
+  }
+
   // Assign functions for all the calculator fucntions
   var calc = {}
   calc.addNumbers = function (a, b) { return (a + b) }
