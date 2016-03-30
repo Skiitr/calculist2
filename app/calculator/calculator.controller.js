@@ -43,6 +43,18 @@ function calculator ($scope, dataService) {
     }
   }
 
+  // Create New Card
+  $scope.createCard = function () {
+    // Check if data is valid for card creation
+      // Else throw error
+    var newCard = {}
+    newCard.title = 'Card Title'
+    newCard.id = Date.now() * Math.ceil(Math.random() * 10)
+    newCard.equation = $scope.displayTop
+    newCard.solution = $scope.displayBot
+    dataService.cards.unshift(newCard)
+  }
+
   // Assign functions for all the calculator fucntions
   var calc = {}
   calc.addNumbers = function (a, b) { return (a + b) }
