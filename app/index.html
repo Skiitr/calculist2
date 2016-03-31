@@ -63,15 +63,17 @@
       </section>
 
       <!-- List Area -->
-      <section ng-controller="listController as list" class="list">
+      <section ng-controller="listController as list"  class="list">
         <h2 class="section--title">L I S T</h2>
         <ul>
-          <li ng-repeat="card in dataService.cards" class="card">
+          <li ng-repeat="card in dataService.cards" ng-init="card.editTitle = false" class="card">
             <div class="card--title-area">
-              <h3 class="card--title">{{ card.title }}</h3>
-              <a class="card--up" ng-click="moveCard('up')" ng-hide="card.id === dataService.cards[0].id" href=""><i class="fa fa-chevron-up"></i></a>
-              <a class="card--down" ng-click="moveCard('down')" ng-hide="card.id === dataService.cards[dataService.cards.length - 1].id" href=""><i class="fa fa-chevron-down"></i></a>
-              <a class="card--del" ng-click="delCard()" href=""><i class="fa fa-trash"></i></a>
+              <h3 ng-hide="card.editTitle" ng-click="card.editTitle = true" class="card--title">{{ card.title }}</h3>
+              <input class="card--title" type="text" name="title" ng-blur="card.editTitle = false" ng-show="card.editTitle" ng-model="card.title">
+              <a class="card--up" ng-click="moveCard('up')" ng-hide="card.id === dataService.cards[0].id || card.editTitle" href=""><i class="fa fa-chevron-up"></i></a>
+              <a class="card--down" ng-click="moveCard('down')" ng-hide="card.id === dataService.cards[dataService.cards.length - 1].id || card.editTitle" href=""><i class="fa fa-chevron-down"></i></a>
+              <a class="card--del" ng-click="delCard()" ng-hide="card.editTitle" href=""><i class="fa fa-trash"></i></a>
+              <a class="card--check" ng-click="card.editTitle = false" ng-show="card.editTitle" href=""><i class="fa fa-check"></i></a>
             </div>
             <div class="card--equation">{{ card.equation }}</div>
             <div class="card--solution">{{ card.solution }}</div>
