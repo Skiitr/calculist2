@@ -21,38 +21,52 @@ function calculator ($scope, dataService) {
 
   // Add clicked button to the display
   $scope.inputBtnClick = function (btn) {
-    $scope.displayBot += (btn)
+    if (btn === '+/-') {
+      var screenObj = scrapeString(btn)
+      if (screenObj.valueB) {
+        screenObj.valueB *= -1
+      } else {
+        screenObj.valueA *= -1
+      }
+      $scope.displayBot = (screenObj.valueA + ' ' + screenObj.function + ' ' + screenObj.valueB)
+    } else {
+      $scope.displayBot += (btn)
+    }
   }
 
-  // $scope.keyPress = function (keycode) {
-  //   console.log(keycode)
-  //   var validKeyCodes = {
-  //     '48': 0, '49': 1, '50': 2, '51': 3, '52': 4, // 0-4
-  //     '53': 5, '54': 6, '55': 7, '56': 8, '57': 9, // 5-9
-  //     '42': ' * ', '43': ' + ', '45': ' - ', '47': ' / ', // *,+,-,/
-  //     '13': 'Enter' // Enter
-  //   }
-  //   if (validKeyCodes[keycode]) {
-  //     if (validKeyCodes[keycode] === 'Enter') {
-  //       $scope.equate()
-  //     } else {
-  //       $scope.inputBtnClick(validKeyCodes[keycode])
-  //     }
-  //   } else {
-  //     console.log('Key not valid')
-  //   }
-  // }
+  $scope.keyPress = function (keycode) {
+    console.log(keycode)
+    var validKeyCodes = {
+      '48': 0, '49': 1, '50': 2, '51': 3, '52': 4, // 0-4
+      '53': 5, '54': 6, '55': 7, '56': 8, '57': 9, // 5-9
+      '42': ' x ', '43': ' + ', '45': ' - ', '47': ' ÷ ', // *,+,-,/
+      '13': 'Enter' // Enter
+    }
+    if (validKeyCodes[keycode]) {
+      if (validKeyCodes[keycode] === 'Enter') {
+        $scope.equate()
+      } else {
+        $scope.inputBtnClick(validKeyCodes[keycode])
+      }
+    } else {
+      console.log('Key not valid')
+    }
+  }
 
   // Create New Card
   $scope.createCard = function () {
     // Check if data is valid for card creation
+    if ($scope.displayTop && $scope.displayBot) {
+      var newCard = {}
+      newCard.title = 'Card Title'
+      newCard.id = Date.now() * Math.ceil(Math.random() * 10)
+      newCard.equation = $scope.displayTop
+      newCard.solution = $scope.displayBot
+      dataService.cards.unshift(newCard)
+    } else {
       // Else throw error
-    var newCard = {}
-    newCard.title = 'Card Title'
-    newCard.id = Date.now() * Math.ceil(Math.random() * 10)
-    newCard.equation = $scope.displayTop
-    newCard.solution = $scope.displayBot
-    dataService.cards.unshift(newCard)
+      console.log('Data not vailid for new card')
+    }
   }
 
   // Assign functions for all the calculator fucntions
@@ -69,8 +83,8 @@ function calculator ($scope, dataService) {
     switch (func) {
       case '+': return calc.addNumbers(a, b)
       case '-': return calc.subtractNumbers(a, b)
-      case '*': return calc.multiplyNumbers(a, b)
-      case '/': return calc.divideNumbers(a, b)
+      case 'x': return calc.multiplyNumbers(a, b)
+      case '÷': return calc.divideNumbers(a, b)
       case '^': return calc.powNumbers(a, b)
       case '#': return calc.sqrtNumber(a)
       default: return '??'
@@ -79,6 +93,7 @@ function calculator ($scope, dataService) {
 
   // Decode the string into values and a function
   function scrapeString (str) {
+    console.log(str)
     var numbers = str.match(/\d+/g)
     var functions = str.match(/[^\d\s]/)
     var eqObj = {}

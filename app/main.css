@@ -158,7 +158,8 @@ footer {
     background-color: #e8e8e8;
     text-align: right;
     letter-spacing: 0.25rem;
-    padding: 1rem 2rem; }
+    padding: 1rem 2rem;
+    overflow: scroll; }
   .display--buttons {
     width: 25%; }
 
