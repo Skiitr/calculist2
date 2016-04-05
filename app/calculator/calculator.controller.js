@@ -12,46 +12,65 @@ function calculator ($scope, dataService) {
   $scope.displayBot = ''
   $scope.displayTop = ''
 
-  // Handle the equuals click to evaluate expression and return result
+  // create container for current equation
+  $scope.calc = []
+
+  // Handle the equals click to evaluate expression and return result
   $scope.equate = function () {
-    var equation = scrapeString($scope.displayBot)
-    $scope.displayTop = (equation.valueA + ' ' + equation.function + ' ' + equation.valueB + ' =')
-    $scope.displayBot = parseEquation(equation.valueA, equation.valueB, equation.function)
+    if ($scope.calc[$scope.calc.length - 1] === '=') {
+      return
+    }
+    $scope.calc.push($scope.displayBot)
+    $scope.displayBot = ''
+    displayEquation($scope.calc)
+    var equationString = $scope.displayTop
+    if (equationString.includes('÷')) {
+      equationString = equationString.split('÷').join('/')
+    }
+    if (equationString.includes('x')) {
+      equationString = equationString.split('x').join('*')
+    }
+    $scope.displayBot = eval(equationString)
+    $scope.calc.push('=')
+    displayEquation($scope.calc)
   }
 
   // Add clicked button to the display
-  $scope.inputBtnClick = function (btn) {
-    if (btn === '+/-') {
-      var screenObj = scrapeString(btn)
-      if (screenObj.valueB) {
-        screenObj.valueB *= -1
-      } else {
-        screenObj.valueA *= -1
-      }
-      $scope.displayBot = (screenObj.valueA + ' ' + screenObj.function + ' ' + screenObj.valueB)
-    } else {
+  $scope.inputNumberClick = function (btn) {
       $scope.displayBot += (btn)
-    }
   }
 
-  $scope.keyPress = function (keycode) {
-    console.log(keycode)
-    var validKeyCodes = {
-      '48': 0, '49': 1, '50': 2, '51': 3, '52': 4, // 0-4
-      '53': 5, '54': 6, '55': 7, '56': 8, '57': 9, // 5-9
-      '42': ' x ', '43': ' + ', '45': ' - ', '47': ' ÷ ', // *,+,-,/
-      '13': 'Enter' // Enter
-    }
-    if (validKeyCodes[keycode]) {
-      if (validKeyCodes[keycode] === 'Enter') {
-        $scope.equate()
-      } else {
-        $scope.inputBtnClick(validKeyCodes[keycode])
-      }
-    } else {
-      console.log('Key not valid')
-    }
+  // Add clicked button to the display
+  $scope.inputFunctionClick = function (fn) {
+    $scope.calc.push($scope.displayBot)
+    $scope.calc.push(fn)
+    $scope.displayBot = ''
+    displayEquation($scope.calc)
   }
+
+  // Convert calc array to a string and display it
+  function displayEquation (inputArray) {
+    $scope.displayTop = inputArray.join(' ')
+  }
+
+  // $scope.keyPress = function (keycode) {
+  //   console.log(keycode)
+  //   var validKeyCodes = {
+  //     '48': 0, '49': 1, '50': 2, '51': 3, '52': 4, // 0-4
+  //     '53': 5, '54': 6, '55': 7, '56': 8, '57': 9, // 5-9
+  //     '42': ' x ', '43': ' + ', '45': ' - ', '47': ' ÷ ', // *,+,-,/
+  //     '13': 'Enter' // Enter
+  //   }
+  //   if (validKeyCodes[keycode]) {
+  //     if (validKeyCodes[keycode] === 'Enter') {
+  //       $scope.equate()
+  //     } else {
+  //       $scope.inputBtnClick(validKeyCodes[keycode])
+  //     }
+  //   } else {
+  //     console.log('Key not valid')
+  //   }
+  // }
 
   // Create New Card
   $scope.createCard = function () {
@@ -69,37 +88,30 @@ function calculator ($scope, dataService) {
     }
   }
 
-  // Assign functions for all the calculator fucntions
-  var calc = {}
-  calc.addNumbers = function (a, b) { return (a + b) }
-  calc.subtractNumbers = function (a, b) { return (a - b) }
-  calc.multiplyNumbers = function (a, b) { return (a * b) }
-  calc.divideNumbers = function (a, b) { return (a / b) }
-  calc.powNumbers = function (a, b) { return Math.pow(a, b) }
-  calc.sqrtNumber = function (a) { return Math.sqrt(a) }
+/* New plan for calculator function
+keypad will except numbers only for screen to not change
+functions will shift the number on the lower display up and add the function
+  to the upper line such as "36 +"
++/- function will change the number on screen to its negative
+sqrt will evaluate automaticly
+once = is hit the array will be parsed and the equation solved
+drop last function added to evaluate such as "36 + 73 +"
+default for the list button is disabled
+after an evaluate the list button is enabled
+after a clear function the list button is disabled
 
-  // Route the equation to the proper method
-  function parseEquation (a, b, func) {
-    switch (func) {
-      case '+': return calc.addNumbers(a, b)
-      case '-': return calc.subtractNumbers(a, b)
-      case 'x': return calc.multiplyNumbers(a, b)
-      case '÷': return calc.divideNumbers(a, b)
-      case '^': return calc.powNumbers(a, b)
-      case '#': return calc.sqrtNumber(a)
-      default: return '??'
-    }
-  }
-
-  // Decode the string into values and a function
-  function scrapeString (str) {
-    console.log(str)
-    var numbers = str.match(/\d+/g)
-    var functions = str.match(/[^\d\s]/)
-    var eqObj = {}
-    eqObj.valueA = parseInt(numbers[0], 10)
-    eqObj.valueB = parseInt(numbers[1], 10)
-    eqObj.function = functions[0]
-    return eqObj
-  }
+new functions
+solveArray
+  if = is at the end of the array return null
+  map functions to js operators
+  create equation from the array
+  add = to the end of the array
+  return results
+functionClick
+  add number entered to calc array
+  add function symbol to array
+  run display array
+displayArray
+  pasre array into a string to display on the upper line
+*/
 }
