@@ -17,12 +17,14 @@ function calculator ($scope, dataService) {
 
   // Handle the equals click to evaluate expression and return result
   $scope.equate = function () {
+    // check to see if equation has been solved
     if ($scope.calc[$scope.calc.length - 1] === '=') {
       return
     }
     $scope.calc.push($scope.displayBot)
     $scope.displayBot = ''
     displayEquation($scope.calc)
+    // clean equation in display top
     var equationString = $scope.displayTop
     if (equationString.includes('÷')) {
       equationString = equationString.split('÷').join('/')
@@ -42,9 +44,19 @@ function calculator ($scope, dataService) {
 
   // Add clicked button to the display
   $scope.inputFunctionClick = function (fn) {
-    $scope.calc.push($scope.displayBot)
-    $scope.calc.push(fn)
-    $scope.displayBot = ''
+    if (fn === '+/-') {
+      if ($scope.displayBot.includes('-')) {
+        $scope.displayBot = $scope.displayBot.slice(1)
+      } else {
+        $scope.displayBot = '-' + $scope.displayBot
+      }
+    } else if ($scope.displayBot === '') {
+      return
+    } else {
+      $scope.calc.push($scope.displayBot)
+      $scope.calc.push(fn)
+      $scope.displayBot = ''
+    }
     displayEquation($scope.calc)
   }
 
@@ -113,5 +125,17 @@ functionClick
   run display array
 displayArray
   pasre array into a string to display on the upper line
+
+--before eval--
+if ^
+  split ' '
+  search for index of ^
+  set base to index - 1
+  set exp to index + 1
+  set index of ^ = Math.POW(base,pow)
+  splice index -1
+  splice index +1
+  join ' '
+--then eval--
 */
 }
