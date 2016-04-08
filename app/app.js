@@ -41,3 +41,50 @@ $('.btn--equals').on('click', function () {
   var equation = scrapeString(displayBot.html())
   displayBot.html(parseEquation(equation.valueA, equation.valueB, equation.function))
 })
+
+// When number array.length = 1
+// Return array[0]
+// If A exists in functions array then solve()
+// solve() + replace + remove
+// Restart function
+// If B exists in functions array then solve()
+// solve() + replace + remove
+// Restart function
+// If C exists in functions array then solve()
+// solve() + replace + remove
+// Restart function
+var calcArray = ['-', '1', '+', '2', '-', '3', '*', '4', '/', '5', '=']
+cleanArray(calcArray)
+solveArray(calcArray)
+
+// function buildArray (array, start, increment) {
+//   var newArray = []
+//   for (var i = start; i < array.length; i += increment) {
+//     newArray.push(array[i])
+//   }
+//   return newArray
+// }
+
+// Clean array, Clip leading and trailing functions
+function cleanArray (array) {
+  if (isNaN(array[0])) {
+    array.shift()
+  }
+  if (isNaN(array[array.length - 1])) {
+    array.pop()
+  }
+  return array
+}
+
+// solve the input string and return a value
+function solveArray (equationArray) {
+  if (equationArray.length === 1) {
+    return equationArray[0]
+  }
+  if (equationArray.includes('^')) {
+    var fnIndex = equationArray.indexOf('^')
+    var fnAnswer = Math.pow(equationArray[fnIndex - 1], equationArray[fnIndex + 1])
+    equationArray.splice(fnIndex - 1, 3, fnAnswer)
+    solveArray(equationArray)
+  }
+}
