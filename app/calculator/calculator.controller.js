@@ -21,20 +21,12 @@ function calculator ($scope, dataService) {
     if ($scope.calc[$scope.calc.length - 1] === '=') {
       return
     }
-    $scope.calc.push($scope.displayBot)
+    $scope.calc.push($scope.displayBot, '=')
     $scope.displayBot = ''
+    // clean equation
+    $scope.calc = cleanArray($scope.calc)
     displayEquation($scope.calc)
-    // clean equation in display top
-    var equationString = $scope.displayTop
-    if (equationString.includes('÷')) {
-      equationString = equationString.split('÷').join('/')
-    }
-    if (equationString.includes('x')) {
-      equationString = equationString.split('x').join('*')
-    }
-    $scope.displayBot = eval(equationString)
-    $scope.calc.push('=')
-    displayEquation($scope.calc)
+    $scope.displayBot = solveArray($scope.calc)
   }
 
   // Add clicked button to the display
@@ -45,11 +37,9 @@ function calculator ($scope, dataService) {
   // Add clicked button to the display
   $scope.inputFunctionClick = function (fn) {
     if (fn === '+/-') {
-      if ($scope.displayBot.includes('-')) {
-        $scope.displayBot = $scope.displayBot.slice(1)
-      } else {
-        $scope.displayBot = '-' + $scope.displayBot
-      }
+      $scope.displayBot = toggleLeadingChar($scope.displayBot, '-')
+    } else if (fn === '√') {
+        $scope.displayBot = toggleLeadingChar($scope.displayBot, '√')
     } else if ($scope.displayBot === '') {
       return
     } else {
@@ -60,9 +50,77 @@ function calculator ($scope, dataService) {
     displayEquation($scope.calc)
   }
 
+  // Toggle a charater on or off from a string
+  function toggleLeadingChar (str, char) {
+    str.includes(char) ? str = str.slice(1) : str = char + str
+    return str
+  }
+
   // Convert calc array to a string and display it
   function displayEquation (inputArray) {
     $scope.displayTop = inputArray.join(' ')
+  }
+
+  // Clean array, Clip leading and trailing functions
+  function cleanArray (array) {
+    if (isNaN(array[0])) {
+      array.shift()
+    }
+    if (isNaN(array[array.length - 1])) {
+      array.pop()
+    }
+    return array
+  }
+
+  // solve the input string and return a value
+  function solveArray (equationArray) {
+    var fnIndex = '?'
+    var fnAnswer = '?'
+    // Check to see if solution has been found
+    if (equationArray.length === 1) { return equationArray[0] }
+
+    // First check to see if a sqrt exists
+    if (equationArray.includes('√')) {
+      fnIndex = equationArray.indexOf('√')
+      fnAnswer = Math.sqrt(parseFloat(equationArray[fnIndex + 1]))
+      equationArray.splice(fnIndex, 2, fnAnswer)
+      return solveArray(equationArray)
+    }
+    // Second check to see if an exponent exists
+    if (equationArray.includes('^')) {
+      fnIndex = equationArray.indexOf('^')
+      fnAnswer = Math.pow(parseFloat(equationArray[fnIndex - 1]), parseFloat(equationArray[fnIndex + 1]))
+      equationArray.splice(fnIndex - 1, 3, fnAnswer)
+      return solveArray(equationArray)
+    }
+    // Third check to see if a multiplacation exists
+    if (equationArray.includes('x')) {
+      fnIndex = equationArray.indexOf('x')
+      fnAnswer = parseFloat(equationArray[fnIndex - 1]) * parseFloat(equationArray[fnIndex + 1])
+      equationArray.splice(fnIndex - 1, 3, fnAnswer)
+      return solveArray(equationArray)
+    }
+    // Fourth check to see if a division exists
+    if (equationArray.includes('÷')) {
+      fnIndex = equationArray.indexOf('÷')
+      fnAnswer = parseFloat(equationArray[fnIndex - 1]) / parseFloat(equationArray[fnIndex + 1])
+      equationArray.splice(fnIndex - 1, 3, fnAnswer)
+      return solveArray(equationArray)
+    }
+    // Fifth check to see if a addition exists
+    if (equationArray.includes('+')) {
+      fnIndex = equationArray.indexOf('+')
+      fnAnswer = parseFloat(equationArray[fnIndex - 1]) + parseFloat(equationArray[fnIndex + 1])
+      equationArray.splice(fnIndex - 1, 3, fnAnswer)
+      return solveArray(equationArray)
+    }
+    // Sixth check to see if a subtraction exists
+    if (equationArray.includes('-')) {
+      fnIndex = equationArray.indexOf('-')
+      fnAnswer = parseFloat(equationArray[fnIndex - 1]) - parseFloat(equationArray[fnIndex + 1])
+      equationArray.splice(fnIndex - 1, 3, fnAnswer)
+      return solveArray(equationArray)
+    }
   }
 
   // $scope.keyPress = function (keycode) {

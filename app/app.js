@@ -53,7 +53,7 @@ $('.btn--equals').on('click', function () {
 // If C exists in functions array then solve()
 // solve() + replace + remove
 // Restart function
-var calcArray = ['-', '1', '+', '2', '-', '3', '*', '4', '/', '5', '=']
+var calcArray = ['2', '^', '3', '*', '4']
 cleanArray(calcArray)
 solveArray(calcArray)
 
@@ -78,13 +78,51 @@ function cleanArray (array) {
 
 // solve the input string and return a value
 function solveArray (equationArray) {
-  if (equationArray.length === 1) {
-    return equationArray[0]
+  var fnIndex = '?'
+  var fnAnswer = '?'
+  // Check to see if solution has been found
+  if (equationArray.length === 1) { return equationArray[0] }
+
+  // First check to see if a sqrt exists
+  if (equationArray.includes('√')) {
+    fnIndex = equationArray.indexOf('√')
+    fnAnswer = Math.sqrt(equationArray[fnIndex + 1])
+    equationArray.splice(fnIndex, 2, fnAnswer)
+    return solveArray(equationArray)
   }
+  // Second check to see if an exponent exists
   if (equationArray.includes('^')) {
-    var fnIndex = equationArray.indexOf('^')
-    var fnAnswer = Math.pow(equationArray[fnIndex - 1], equationArray[fnIndex + 1])
+    fnIndex = equationArray.indexOf('^')
+    fnAnswer = Math.pow(parseFloat(equationArray[fnIndex - 1]), parseFloat(equationArray[fnIndex + 1]))
     equationArray.splice(fnIndex - 1, 3, fnAnswer)
-    solveArray(equationArray)
+    return solveArray(equationArray)
+  }
+  // Third check to see if a multiplacation exists
+  if (equationArray.includes('x')) {
+    fnIndex = equationArray.indexOf('x')
+    fnAnswer = equationArray[fnIndex - 1] * equationArray[fnIndex + 1]
+    equationArray.splice(fnIndex - 1, 3, fnAnswer)
+    return solveArray(equationArray)
+  }
+  // Fourth check to see if a division exists
+  if (equationArray.includes('÷')) {
+    fnIndex = equationArray.indexOf('÷')
+    fnAnswer = equationArray[fnIndex - 1] / equationArray[fnIndex + 1]
+    equationArray.splice(fnIndex - 1, 3, fnAnswer)
+    return solveArray(equationArray)
+  }
+  // Fifth check to see if a addition exists
+  if (equationArray.includes('+')) {
+    fnIndex = equationArray.indexOf('+')
+    fnAnswer = equationArray[fnIndex - 1] + equationArray[fnIndex + 1]
+    equationArray.splice(fnIndex - 1, 3, fnAnswer)
+    return solveArray(equationArray)
+  }
+  // Sixth check to see if a subtraction exists
+  if (equationArray.includes('-')) {
+    fnIndex = equationArray.indexOf('-')
+    fnAnswer = equationArray[fnIndex - 1] - equationArray[fnIndex + 1]
+    equationArray.splice(fnIndex - 1, 3, fnAnswer)
+    return solveArray(equationArray)
   }
 }
