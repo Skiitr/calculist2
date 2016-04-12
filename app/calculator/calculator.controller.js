@@ -39,7 +39,7 @@ function calculator ($scope, dataService) {
     if (fn === '+/-') {
       $scope.displayBot = toggleLeadingChar($scope.displayBot, '-')
     } else if (fn === '√') {
-        $scope.displayBot = toggleLeadingChar($scope.displayBot, '√')
+      $scope.displayBot = toggleLeadingChar($scope.displayBot, '√')
     } else if ($scope.displayBot === '') {
       return
     } else {
@@ -63,10 +63,10 @@ function calculator ($scope, dataService) {
 
   // Clean array, Clip leading and trailing functions
   function cleanArray (array) {
-    if (isNaN(array[0])) {
+    if (isNaN(array[0]) && !array[0].startsWith('√')) {
       array.shift()
     }
-    if (isNaN(array[array.length - 1])) {
+    if (isNaN(array[array.length - 1]) && !array[array.length - 1].startsWith('√')) {
       array.pop()
     }
     return array
@@ -76,16 +76,18 @@ function calculator ($scope, dataService) {
   function solveArray (equationArray) {
     var fnIndex = '?'
     var fnAnswer = '?'
+    // First check to see if a sqrt string exists
+    if (equationArray.join(' ').indexOf('√') > -1) {
+      fnIndex = equationArray.map(function (currVal, i, array) {
+        if (currVal.startsWith('√')) { return i }
+      }).join('')
+      fnAnswer = Math.sqrt(parseFloat(equationArray[fnIndex].slice(1)))
+      equationArray.splice(fnIndex, 1, fnAnswer)
+    }
+
     // Check to see if solution has been found
     if (equationArray.length === 1) { return equationArray[0] }
 
-    // First check to see if a sqrt exists
-    if (equationArray.includes('√')) {
-      fnIndex = equationArray.indexOf('√')
-      fnAnswer = Math.sqrt(parseFloat(equationArray[fnIndex + 1]))
-      equationArray.splice(fnIndex, 2, fnAnswer)
-      return solveArray(equationArray)
-    }
     // Second check to see if an exponent exists
     if (equationArray.includes('^')) {
       fnIndex = equationArray.indexOf('^')
