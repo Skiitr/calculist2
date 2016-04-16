@@ -24,8 +24,10 @@ function calculator ($scope, dataService) {
 
   // Add value and clicked function to the display
   $scope.inputFunctionClick = function (fn) {
+    $scope.displayBot = $scope.displayBot.toString()
     // Check if blank or isNaN
-    if ($scope.displayBot === '' || isNaN($scope.displayBot)) {
+    if (isNaN($scope.displayBot) &&
+      !$scope.displayBot.startsWith('√')) {
       return
     // Toggle '-' number
     } else if (fn === '+/-') {
@@ -68,7 +70,9 @@ function calculator ($scope, dataService) {
   // Handle the equals click to evaluate expression and return result
   $scope.equate = function () {
     // check to see if equation has been solved
-    if ($scope.equationSolved || isNaN($scope.displayBot)) { return }
+    if (($scope.equationSolved ||
+      isNaN($scope.displayBot)) &&
+      !$scope.displayBot.startsWith('√')) { return }
     // Add last number entered and '=' to the calc array
     $scope.calc.push($scope.displayBot, '=')
     // Clear the display bottom
@@ -80,6 +84,23 @@ function calculator ($scope, dataService) {
     $scope.displayBot = solveArray($scope.calc)
     $scope.clear('array')
     $scope.equationSolved = true
+  }
+
+  // Create function to walk backwards through the numbers
+  $scope.backspace = function () {
+    if ($scope.equationSolved) {
+      $scope.clear('top')
+      $scope.equationSolved = false
+    } else if ($scope.displayBot === '' && $scope.displayTop === '') {
+      return
+    } else if ($scope.displayBot === '') {
+      $scope.calc.pop()
+      $scope.displayBot = $scope.calc.pop()
+      displayEquation($scope.calc)
+    } else {
+      $scope.displayBot = $scope.displayBot.toString()
+      $scope.displayBot = $scope.displayBot.slice(0, $scope.displayBot.length - 1)
+    }
   }
 
   // Toggle a charater on or off from a string
@@ -104,6 +125,10 @@ function calculator ($scope, dataService) {
     if (isNaN(array[array.length - 1]) && !array[array.length - 1].startsWith('√')) {
       array.pop()
     }
+    // Convert √numbers to floats
+    array = array.map(function (currVal, i, array) {
+      return currVal.startsWith('√') ? Math.sqrt(parseFloat(currVal.slice(1))) : currVal
+    })
     return array
   }
 
@@ -111,16 +136,8 @@ function calculator ($scope, dataService) {
   function solveArray (equationArray) {
     var fnIndex = '?'
     var fnAnswer = '?'
-    // First check to see if a sqrt string exists
-    if (equationArray.join(' ').indexOf('√') > -1) {
-      fnIndex = equationArray.map(function (currVal, i, array) {
-        if (currVal.startsWith('√')) { return i }
-      }).join('')
-      fnAnswer = Math.sqrt(parseFloat(equationArray[fnIndex].slice(1)))
-      equationArray.splice(fnIndex, 1, fnAnswer)
-    }
-    
-    // Check to see if solution has been found
+
+    // First check to see if solution has been found
     if (equationArray.length === 1) { return equationArray[0] }
 
     // Second check to see if an exponent exists
