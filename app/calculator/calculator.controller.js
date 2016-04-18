@@ -25,25 +25,27 @@ function calculator ($scope, dataService) {
   // Add value and clicked function to the display
   $scope.inputFunctionClick = function (fn) {
     $scope.displayBot = $scope.displayBot.toString()
-    // Check if blank or isNaN
-    if (isNaN($scope.displayBot) &&
-      !$scope.displayBot.startsWith('√')) {
-      return
     // Toggle '-' number
-    } else if (fn === '+/-') {
+    if (fn === '+/-') {
       $scope.displayBot = toggleLeadingChar($scope.displayBot.toString(), '-')
       $scope.equationSolved = false
+      return
     // Toggle '√' number
-    } else if (fn === '√') {
+    }
+    if (fn === '√') {
       $scope.displayBot = toggleLeadingChar($scope.displayBot.toString(), '√')
       $scope.equationSolved = false
-    } else {
-      $scope.calc.push($scope.displayBot)
-      $scope.calc.push(fn)
-      displayEquation($scope.calc)
-      $scope.clear('bottom')
-      $scope.equationSolved = false
+      return
     }
+    // Check if blank or isNaN
+    if ($scope.displayBot === '') {
+      return
+    }
+    $scope.calc.push($scope.displayBot)
+    $scope.calc.push(fn)
+    displayEquation($scope.calc)
+    $scope.clear('bottom')
+    $scope.equationSolved = false
   }
 
   // Add a clear function
