@@ -6,7 +6,7 @@ angular
   .controller('calculatorController', calculator)
 
 function calculator ($scope, dataService) {
-  //route the dataService to a local object
+  // Route the dataService to a local object
   $scope.dataService = dataService
   // create containers for top and bottom line elements
   $scope.displayBot = ''
@@ -81,9 +81,8 @@ function calculator ($scope, dataService) {
     $scope.clear('bottom')
     displayEquation($scope.calc)
     // Clean the calc array equation
-    $scope.calc = cleanArray($scope.calc)
     // Solve the array equation and display answer on display bottom
-    $scope.displayBot = solveArray($scope.calc)
+    $scope.displayBot = solveArray(cleanArray($scope.calc))
     $scope.clear('array')
     $scope.equationSolved = true
   }
@@ -121,10 +120,10 @@ function calculator ($scope, dataService) {
 
   // Clean array, Clip leading and trailing functions
   function cleanArray (array) {
-    if (isNaN(array[0]) && !array[0].startsWith('√')) {
+    while ((isNaN(array[0]) && !array[0].startsWith('√')) || array[0] === '') {
       array.shift()
     }
-    if (isNaN(array[array.length - 1]) && !array[array.length - 1].startsWith('√')) {
+    while ((isNaN(array[array.length - 1]) && !array[array.length - 1].startsWith('√')) || array[array.length - 1] === '') {
       array.pop()
     }
     // Convert √numbers to floats

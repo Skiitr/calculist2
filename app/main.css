@@ -188,6 +188,8 @@ footer {
 
 .btn--list-add, .btn--clear-all {
   display: block;
+  padding-left: 0;
+  padding-right: 0;
   width: 100%;
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
