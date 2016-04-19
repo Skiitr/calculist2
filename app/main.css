@@ -186,7 +186,7 @@ footer {
 .btn--equals {
   border-radius: 0 0 25px 0; }
 
-.btn--list-add {
+.btn--list-add, .btn--clear-all {
   display: block;
   width: 100%;
   -webkit-box-flex: 1;
