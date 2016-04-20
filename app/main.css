@@ -85,6 +85,8 @@ footer {
   height: 2rem; }
   footer small {
     margin-right: 0.25rem; }
+  footer a {
+    color: inherit; }
 
 .calc {
   width: 95%;
