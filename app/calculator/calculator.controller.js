@@ -72,9 +72,8 @@ function calculator ($scope, dataService) {
   // Handle the equals click to evaluate expression and return result
   $scope.equate = function () {
     // check to see if equation has been solved
-    if (($scope.equationSolved ||
-      isNaN($scope.displayBot)) &&
-      !$scope.displayBot.startsWith('√')) { return }
+    if ($scope.equationSolved) { return }
+    if (isNaN($scope.displayBot) && !$scope.displayBot.startsWith('√') && !$scope.displayBot.startsWith('-√')) { return }
     // Add last number entered and '=' to the calc array
     $scope.calc.push($scope.displayBot, '=')
     // Clear the display bottom
@@ -120,16 +119,19 @@ function calculator ($scope, dataService) {
 
   // Clean array, Clip leading and trailing functions
   function cleanArray (array) {
-    while ((isNaN(array[0]) && !array[0].startsWith('√')) || array[0] === '') {
-      array.shift()
-    }
-    while ((isNaN(array[array.length - 1]) && !array[array.length - 1].startsWith('√')) || array[array.length - 1] === '') {
-      array.pop()
-    }
+    console.log('Array to clean is ' + array)
     // Convert √numbers to floats
     array = array.map(function (currVal, i, array) {
+      if (currVal.startsWith('-√')) {
+        return Math.sqrt(parseFloat(currVal.slice(2))) * -1
+      }
       return currVal.startsWith('√') ? Math.sqrt(parseFloat(currVal.slice(1))) : currVal
     })
+    while (array[0] === '' || isNaN(array[0])) { array.shift() }
+    console.log('Nothing left to shift')
+    while (array[array.length - 1] === '' || isNaN(array[array.length - 1])) { array.pop() }
+    console.log('Nothing left to pop')
+    console.log('Clean array is ' + array)
     return array
   }
 
