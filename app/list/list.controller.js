@@ -1,6 +1,3 @@
-'use strict'
-/* globals angular */
-
 angular
   .module('calculist2')
   .controller('listController', list)

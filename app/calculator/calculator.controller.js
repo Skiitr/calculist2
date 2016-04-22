@@ -1,6 +1,3 @@
-'use strict'
-/* globals angular */
-
 angular
   .module('calculist2')
   .controller('calculatorController', calculator)
@@ -119,7 +116,6 @@ function calculator ($scope, dataService) {
 
   // Clean array, Clip leading and trailing functions
   function cleanArray (array) {
-    console.log('Array to clean is ' + array)
     // Convert √numbers to floats
     array = array.map(function (currVal, i, array) {
       if (currVal.startsWith('-√')) {
@@ -128,10 +124,7 @@ function calculator ($scope, dataService) {
       return currVal.startsWith('√') ? Math.sqrt(parseFloat(currVal.slice(1))) : currVal
     })
     while (array[0] === '' || isNaN(array[0])) { array.shift() }
-    console.log('Nothing left to shift')
     while (array[array.length - 1] === '' || isNaN(array[array.length - 1])) { array.pop() }
-    console.log('Nothing left to pop')
-    console.log('Clean array is ' + array)
     return array
   }
 

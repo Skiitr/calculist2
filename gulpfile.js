@@ -28,22 +28,27 @@ gulp.task('compileSass', function () {
 
 // Combine all local JavaScript files into app.js
 gulp.task('concatScripts', function () {
-  return gulp.src(['src/js/moment.js', 'src/js/main.js'])
+  return gulp.src([
+    'app/calculist2.module.js',
+    'app/data/database.service.js',
+    'app/calculator/calculator.controller.js',
+    'app/list/list.controller.js'
+  ])
   .pipe(maps.init())
   .pipe(concat('app.js'))
   .pipe(maps.write('./'))
-  .pipe(gulp.dest('js'))
+  .pipe(gulp.dest('app'))
 })
 
 gulp.task('minifyScripts', ['concatScripts'], function () {
-  return gulp.src('js/app.js')
+  return gulp.src('app/app.js')
   .pipe(uglify())
   .pipe(rename('app.min.js'))
-  .pipe(gulp.dest('js'))
+  .pipe(gulp.dest('app'))
   .pipe(browserSync.reload({ stream: true }))
 })
 
-gulp.task('runBrowserSync', ['compileSass'], function () {
+gulp.task('runBrowserSync', ['minifyScripts', 'compileSass'], function () {
   browserSync({ server: 'app/' })
 })
 
@@ -63,7 +68,7 @@ gulp.task('clean', function () {
 
 // Build task to get files ready for production
 gulp.task('build', ['clean', 'minifyScripts', 'compileSass'], function () {
-  gulp.src(['css/main.css', 'js/app.min.js', 'index.html'], { base: './' })
+  gulp.src(['app/main.css', 'app/app.js', 'app/index.html'])
   .pipe(gulp.dest('dist'))
   browserSync({ server: './dist' })
 })

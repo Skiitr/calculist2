@@ -1,4 +1,3 @@
-'use strict'
 angular
   .module('calculist2')
   .controller('databaseController', database)

@@ -2,13 +2,15 @@
 body, header, main, footer {
   background-color: #1a97de;
   font-family: Lato;
+  max-width: 850px;
+  margin: auto;
 }
 
 .section {
 
   &--title {
     position: absolute;
-    left: 6%;
+    left: 5%;
     width: 1em;
     font-family: Lato;
     color: #e8e8e8;
@@ -18,6 +20,15 @@ body, header, main, footer {
 
     @media (max-width: 600px) {
       display: none;
+    }
+    @media (min-width: 900px) {
+      left: 10%;
+    }
+    @media (min-width: 1000px) {
+      left: 13%;
+    }
+    @media (min-width: 1200px) {
+      left: 18%;
     }
   }
 }
