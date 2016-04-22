@@ -48,12 +48,11 @@ table {
 body, header, main, footer {
   background-color: #1a97de;
   font-family: Lato;
-  max-width: 850px;
-  margin: auto; }
+  max-width: 1200px; }
 
 .section--title {
   position: absolute;
-  left: 5%;
+  left: 6%;
   width: 1em;
   font-family: Lato;
   color: #e8e8e8;
@@ -63,15 +62,6 @@ body, header, main, footer {
   @media (max-width: 600px) {
     .section--title {
       display: none; } }
-  @media (min-width: 900px) {
-    .section--title {
-      left: 10%; } }
-  @media (min-width: 1000px) {
-    .section--title {
-      left: 13%; } }
-  @media (min-width: 1200px) {
-    .section--title {
-      left: 18%; } }
 
 header {
   text-align: center; }
